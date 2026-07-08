@@ -7,7 +7,7 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-west-1"
+  region = "us-east-1"
 }
 
 data "aws_availability_zones" "available" {
@@ -29,7 +29,7 @@ module "vpc" {
 
   tags = {
     project     = "project-alpha",
-    environment = "dev"
+    environment = "development"
   }
 }
 
@@ -45,7 +45,7 @@ module "app_security_group" {
 
   tags = {
     project     = "project-alpha",
-    environment = "dev"
+    environment = "development"
   }
 }
 
@@ -61,7 +61,7 @@ module "lb_security_group" {
 
   tags = {
     project     = "project-alpha",
-    environment = "dev"
+    environment = "development"
   }
 }
 
@@ -102,20 +102,29 @@ module "elb_http" {
 
   tags = {
     project     = "project-alpha",
-    environment = "dev"
+    environment = "development"
   }
 }
 
 module "ec2_instances" {
   source = "./modules/aws-instance"
 
-  instance_count     = 2
-  instance_type      = "t2.micro"
+  instance_count     = var.instance_count
+  instance_type      = var.instance_type
   subnet_ids         = module.vpc.private_subnets[*]
   security_group_ids = [module.app_security_group.this_security_group_id]
 
   tags = {
     project     = "project-alpha",
-    environment = "dev"
+    environment = "development"
   }
+}
+
+terraform {
+  /*cloud {
+    organization = "policy-as-code-training"
+    workspaces {
+      name = "tf-vault-qa-mep-2026-07-08"
+    }
+  }*/
 }
