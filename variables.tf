@@ -13,3 +13,10 @@ variable "aws_region" {
   description = "AWS region to deploy resources"
   type        = string
 }
+
+
+variable "bofa_training_project" {
+  description = "Name of the project for tagging"
+  type        = string
+  default = "project-alpha"
+}
