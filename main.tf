@@ -14,11 +14,11 @@ terraform {
       name = "tf-vault-qa-ose-20260810"
     }
   }
-  */
+*/
 }
 
 provider "aws" {
-  region = "us-west-1"
+  region = var.aws_region
 }
 
 data "aws_availability_zones" "available" {
@@ -40,7 +40,7 @@ module "vpc" {
 
   tags = {
     project     = "project-alpha",
-    environment = "development
+    environment = "development"
   }
 }
 
