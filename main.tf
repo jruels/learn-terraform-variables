@@ -39,7 +39,7 @@ module "vpc" {
   enable_vpn_gateway = false
 
   tags = {
-    project     = "project-alpha",
+    project     = var.bofa_training_project,
     environment = "development"
   }
 }
@@ -55,7 +55,7 @@ module "app_security_group" {
   ingress_cidr_blocks = module.vpc.public_subnets_cidr_blocks
 
   tags = {
-    project     = "project-alpha",
+    project     = var.bofa_training_project,
     environment = "development"
   }
 }
@@ -71,7 +71,7 @@ module "lb_security_group" {
   ingress_cidr_blocks = ["0.0.0.0/0"]
 
   tags = {
-    project     = "project-alpha",
+    project     = var.bofa_training_project,
     environment = "development"
   }
 }
@@ -112,7 +112,7 @@ module "elb_http" {
   }
 
   tags = {
-    project     = "project-alpha",
+    project     = var.bofa_training_project,
     environment = "development"
   }
 }
@@ -126,7 +126,7 @@ module "ec2_instances" {
   security_group_ids = [module.app_security_group.this_security_group_id]
 
   tags = {
-    project     = "project-alpha",
+    project     = var.bofa_training_project,
     environment = "development"
   }
 }
