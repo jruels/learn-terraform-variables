@@ -14,7 +14,6 @@ variable "aws_region" {
   type        = string
 }
 
-
 variable "bofa_training_project" {
   description = "Name of the project for tagging"
   type        = string
