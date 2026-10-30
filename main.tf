@@ -134,3 +134,9 @@ module "ec2_instances" {
     environment = "development"
   }
 }
+
+module "s3-bucket-anm" {
+  source  = "app.terraform.io/policy-as-code-training/s3-bucket-anm/aws"
+  version = "1.1.1"
+  bucket_name = "anm-s3-bucket-example"
+}
